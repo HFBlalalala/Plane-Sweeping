@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
+project(plane_sweeping LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(OpenCV REQUIRED)
+
+##下面是输出信息
+message(STATUS "Opnecv ;ibrary status: ")
+message(STATUS "> version: ${OpenCV_VERSION} ")
+message(STATUS "libraries: ${OpenCV_LIBS} ")
+message(STATUS "> include: ${OpenCV_INCLUDE_DIRS}  ")
+
+
+include_directories(${OpenCV_INCLUDE_DIRS}) 
+
+add_executable(plane_sweeping ./src/main.cpp 
+               ./src/calibration.cpp ./src/calibration.hpp 
+               ./src/depth_cal.cpp ./src/depth_cal.hpp
+               ./src/feature_select.cpp ./src/feature_select.hpp)
+
+target_link_libraries(plane_sweeping ${OpenCV_LIBS})
